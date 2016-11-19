@@ -1,0 +1,12 @@
+apply plugin: 'java'
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar']),
+            project(':mjcommon'),
+            'commons-lang:commons-lang:2.6',
+            'org.apache.mina:mina-core:2.0.13',
+            'log4j:log4j:1.2.17',
+            'org.slf4j:slf4j-log4j12:1.7.7',
+            'org.slf4j:slf4j-api:1.7.7'
+
+}

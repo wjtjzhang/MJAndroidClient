@@ -1,0 +1,15 @@
+apply plugin: 'java'
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar']),
+            project(':mjcommon'),
+            'org.springframework:spring-jdbc:4.3.4.RELEASE',
+            'org.hibernate:hibernate-core:5.2.0.Final',
+            'commons-lang:commons-lang:2.6',
+            'org.json:json:20160212',
+            'org.apache.mina:mina-core:2.0.13',
+            'mysql:mysql-connector-java:5.1.24',
+            'log4j:log4j:1.2.17',
+            'org.slf4j:slf4j-log4j12:1.7.7',
+            'org.slf4j:slf4j-api:1.7.7'
+}

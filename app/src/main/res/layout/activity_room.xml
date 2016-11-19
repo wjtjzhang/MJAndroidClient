@@ -1,0 +1,414 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainId"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/mj_bg"
+    tools:context="com.lele.mjclient.MainActivity" >
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="false"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentStart="false"
+        android:minWidth="200dp"
+        android:minHeight="60dp"
+        android:id="@+id/actions"
+        android:layout_alignParentBottom="false"
+        android:layout_alignParentRight="false"
+        android:layout_toRightOf="@+id/player4OutCarts2"
+        android:layout_marginLeft="10dp"
+        android:baselineAligned="false"
+        android:layout_above="@+id/myInCarts"
+        android:layout_toLeftOf="@+id/player2OutCarts2"
+        android:layout_marginBottom="10dp" >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="false"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentStart="false"
+        android:minWidth="80dp"
+        android:minHeight="80dp"
+        android:id="@+id/engine"
+        android:layout_below="@+id/player3OutCarts2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp" />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:minWidth="70dp"
+        android:minHeight="70dp"
+        android:id="@+id/roomInfo">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:id="@+id/timeNow"
+            android:layout_alignParentTop="false"
+            android:layout_alignParentBottom="false"
+            android:layout_marginTop="5dp"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Room No."
+            android:id="@+id/textView2"
+            android:layout_below="@+id/timeNow"
+            android:layout_marginTop="5dp"
+            android:layout_centerVertical="true"
+            android:autoText="false" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:id="@+id/roomNo"
+            android:layout_alignParentBottom="false"
+            android:layout_alignParentRight="false"
+            android:layout_below="@+id/textView2"
+            android:layout_marginTop="5dp" />
+    </RelativeLayout>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="false"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentStart="false"
+        android:minWidth="70dp"
+        android:minHeight="70dp"
+        android:id="@+id/player3HeaderInfo"
+        android:layout_alignParentBottom="false"
+        android:layout_alignParentRight="false"
+        android:layout_toRightOf="@+id/roomInfo"
+        android:layout_marginLeft="10dp" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentStart="false"
+        android:minWidth="200dp"
+        android:minHeight="30dp"
+        android:id="@+id/player3InCarts"
+        android:layout_alignParentBottom="false"
+        android:layout_alignParentRight="false"
+        android:layout_toRightOf="@+id/player3HeaderInfo"
+        android:layout_marginLeft="10dp"
+        android:layout_centerHorizontal="true"
+        android:layout_toLeftOf="@+id/player2OutCarts1"
+        android:layout_marginRight="10dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView14"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="false"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentStart="false"
+        android:minWidth="200dp"
+        android:minHeight="30dp"
+        android:id="@+id/player3OutCarts1"
+        android:layout_alignParentBottom="false"
+        android:layout_alignParentRight="false"
+        android:layout_marginLeft="10dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/player3InCarts"
+        android:layout_toRightOf="@+id/player4OutCarts2"
+        android:layout_toLeftOf="@+id/player2OutCarts2"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="false"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentStart="false"
+        android:minWidth="200dp"
+        android:minHeight="30dp"
+        android:id="@+id/player3OutCarts2"
+        android:layout_alignParentBottom="false"
+        android:layout_alignParentRight="false"
+        android:layout_marginLeft="10dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/player3OutCarts1"
+        android:layout_toRightOf="@+id/player4OutCarts2"
+        android:layout_toLeftOf="@+id/player2OutCarts2"
+        android:layout_marginRight="10dp" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="false"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentStart="false"
+        android:minWidth="50dp"
+        android:minHeight="50dp"
+        android:id="@+id/message"
+        android:layout_alignParentBottom="false"
+        android:layout_alignParentRight="false"
+        android:layout_marginBottom="10dp"
+        android:layout_toLeftOf="@+id/settings" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentStart="false"
+        android:minWidth="50dp"
+        android:minHeight="50dp"
+        android:id="@+id/settings"
+        android:layout_alignParentBottom="false"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="10dp" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="false"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="false"
+        android:minWidth="70dp"
+        android:minHeight="70dp"
+        android:id="@+id/player4HeaderInfo"
+        android:layout_alignParentBottom="false"
+        android:layout_alignParentRight="false"
+        android:layout_centerVertical="true" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="false"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentStart="false"
+        android:minHeight="200dp"
+        android:id="@+id/player4InCarts"
+        android:layout_alignParentBottom="false"
+        android:layout_alignParentRight="false"
+        android:minWidth="30dp"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/player4HeaderInfo"
+        android:layout_marginLeft="10dp"
+        android:layout_below="@+id/player3HeaderInfo"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_above="@+id/myInCarts" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="false"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentStart="false"
+        android:minHeight="200dp"
+        android:id="@+id/player4OutCarts1"
+        android:layout_alignParentBottom="false"
+        android:layout_alignParentRight="false"
+        android:minWidth="30dp"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/player4InCarts"
+        android:layout_below="@+id/player3HeaderInfo"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_above="@+id/myInCarts" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="false"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentStart="false"
+        android:minHeight="200dp"
+        android:id="@+id/player4OutCarts2"
+        android:layout_alignParentBottom="false"
+        android:layout_alignParentRight="false"
+        android:minWidth="30dp"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/player4OutCarts1"
+        android:layout_below="@+id/player3HeaderInfo"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_above="@+id/myInCarts" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="false"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentStart="false"
+        android:minWidth="70dp"
+        android:minHeight="70dp"
+        android:id="@+id/player2HeaderInfo"
+        android:layout_alignParentBottom="false"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="false"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentStart="false"
+        android:id="@+id/player2Incarts"
+        android:layout_alignParentBottom="false"
+        android:layout_alignParentRight="false"
+        android:minWidth="30dp"
+        android:layout_toLeftOf="@+id/player2HeaderInfo"
+        android:layout_marginRight="10dp"
+        android:layout_centerVertical="true"
+        android:layout_above="@+id/myInCarts"
+        android:layout_marginBottom="10dp"
+        android:layout_below="@+id/player3OutCarts1"
+        android:layout_marginTop="10dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/placeHolderImage"
+            android:baselineAlignBottom="false"
+            android:clickable="false"
+            android:cropToPadding="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="false"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentStart="false"
+        android:id="@+id/player2OutCarts2"
+        android:layout_alignParentBottom="false"
+        android:layout_alignParentRight="false"
+        android:minWidth="30dp"
+        android:layout_toLeftOf="@+id/player2OutCarts1"
+        android:layout_centerVertical="true"
+        android:layout_above="@+id/myInCarts"
+        android:layout_marginBottom="10dp"
+        android:layout_below="@+id/player3OutCarts1"
+        android:layout_marginTop="10dp" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="false"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentStart="false"
+        android:id="@+id/player2OutCarts1"
+        android:layout_alignParentBottom="false"
+        android:layout_alignParentRight="false"
+        android:minWidth="30dp"
+        android:layout_toLeftOf="@+id/player2Incarts"
+        android:layout_centerVertical="true"
+        android:layout_above="@+id/myInCarts"
+        android:layout_marginBottom="10dp"
+        android:layout_below="@+id/player3OutCarts1"
+        android:layout_marginTop="10dp" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="false"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentStart="false"
+        android:minWidth="200dp"
+        android:minHeight="60dp"
+        android:id="@+id/myInCarts"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="false"
+        android:layout_toRightOf="@+id/myHeaderInfo"
+        android:layout_marginLeft="10dp"
+        android:baselineAligned="false" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="false"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentStart="false"
+        android:minWidth="200dp"
+        android:minHeight="30dp"
+        android:id="@+id/myOutCarts1"
+        android:layout_alignParentBottom="false"
+        android:layout_alignParentRight="false"
+        android:layout_marginLeft="10dp"
+        android:layout_centerHorizontal="true"
+        android:layout_toRightOf="@+id/player4OutCarts2"
+        android:layout_toLeftOf="@+id/player2OutCarts2"
+        android:layout_marginRight="10dp"
+        android:layout_above="@+id/myInCarts" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="false"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentStart="false"
+        android:minWidth="200dp"
+        android:minHeight="30dp"
+        android:id="@+id/myOutCarts2"
+        android:layout_alignParentBottom="false"
+        android:layout_alignParentRight="false"
+        android:layout_marginLeft="10dp"
+        android:layout_centerHorizontal="true"
+        android:layout_toRightOf="@+id/player4OutCarts2"
+        android:layout_toLeftOf="@+id/player2OutCarts2"
+        android:layout_marginRight="10dp"
+        android:layout_above="@+id/myOutCarts1" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="false"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="false"
+        android:minWidth="70dp"
+        android:minHeight="70dp"
+        android:id="@+id/myHeaderInfo"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="false">
+
+    </ImageView>
+</RelativeLayout>

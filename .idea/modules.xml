@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/MJAndroidClient.iml" filepath="$PROJECT_DIR$/MJAndroidClient.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mjcmdclient/mjcmdclient.iml" filepath="$PROJECT_DIR$/mjcmdclient/mjcmdclient.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mjcommon/mjcommon.iml" filepath="$PROJECT_DIR$/mjcommon/mjcommon.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mjserver/mjserver.iml" filepath="$PROJECT_DIR$/mjserver/mjserver.iml" />
+    </modules>
+  </component>
+</project>
+

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainId"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/mj_bg"
+    tools:context="com.lele.mjclient.MainActivity" >
+
+    <Button
+        android:id="@+id/localLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/wechatLogin"
+        android:layout_centerInParent="true"
+        android:layout_weight="1"
+        android:minWidth="200dp"
+        android:text="游客登陆" />
+
+    <ImageView
+        android:id="@+id/joinRoom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/localLogin"
+        android:layout_toRightOf="@+id/localLogin"
+        android:src="@drawable/ic_launcher" />
+
+    <Button
+        android:id="@+id/wechatLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_weight="1"
+        android:minWidth="200dp"
+        android:text="微信登陆" />
+
+    <Button
+        android:id="@+id/qqLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/wechatLogin"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentTop="false"
+        android:layout_centerHorizontal="true"
+        android:layout_centerInParent="false"
+        android:layout_centerVertical="false"
+        android:layout_weight="1"
+        android:minWidth="200dp"
+        android:text="QQ登陆" />
+
+</RelativeLayout>
