@@ -22,8 +22,8 @@ public class LoginService implements Service {
 		User user = request.getUser();
 		if (isValidLogin(user)) {
 			LOG.info("User {} login successfuly.", user);
-			loginSuccess = true;
 			MJServer.sessions.put(user, session);
+			loginSuccess = true;
 		} else {
 			LOG.info("User {} login fail.", user);
 			loginSuccess = false;

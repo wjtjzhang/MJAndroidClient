@@ -22,7 +22,7 @@ public class MinaClientSessionHandler implements IoHandler {
 	}
 
 	public void sessionCreated(IoSession session) throws Exception {
-		MJClient.session=session;
+		MJClient.getInstance().setSession(session);
 		Log.i("sessionCreated","sessionCreated");
 
 	}
@@ -50,7 +50,7 @@ public class MinaClientSessionHandler implements IoHandler {
 	public void messageReceived(IoSession session, Object message) throws Exception {
 		Log.i("Message Received - ",message.toString());
 		Response response = (Response) message;
-		MJClient.serviceMap.get(response.getAction()).process(response, session,handler);
+		MJClient.getInstance().getServiceMap().get(response.getAction()).process(response, session, handler);
 
 	}
 

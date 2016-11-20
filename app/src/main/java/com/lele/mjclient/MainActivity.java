@@ -28,7 +28,7 @@ import com.lele.mj.client.handler.UIHandler;
 public class MainActivity extends Activity {
 
 	private static final long CONNECT_TIMEOUT = 100000;
-	private static final String HOST = "192.168.3.17";
+	private static final String HOST = "192.168.3.21";
 	private static final int PORT = 2017;
 
 	Handler handler = new UIHandler(this);
@@ -76,7 +76,7 @@ public class MainActivity extends Activity {
 		public void onClick(View v) {
 			if (session != null) {
 				try {
-					MJClient.login(android_id);
+					MJClient.getInstance().login(android_id);
 				} catch (ClassNotFoundException e) {
 					e.printStackTrace();
 				} catch (IOException e) {

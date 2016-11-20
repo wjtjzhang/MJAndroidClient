@@ -23,12 +23,12 @@ public class ChatService implements Service {
 	}
 
 	private void publishMessage(String message, IoSession mySession) throws IOException {
-		for (User user : MJServer.sessions.keySet()) {
+		/*for (User user : MJServer.sessions.keySet()) {
 			IoSession session = MJServer.sessions.get(user);
 			if (!session.equals(mySession)) {
 				session.write(message);
 			}
-		}
+		}*/
 	}
 
 }

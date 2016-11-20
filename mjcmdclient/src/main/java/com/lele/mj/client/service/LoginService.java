@@ -23,9 +23,9 @@ public class LoginService implements Service {
 				LOG.info("Create Room or Join Room? (C) or RoomId");
 				String in = new BufferedReader(new InputStreamReader(System.in)).readLine();
 				if ("C".equalsIgnoreCase(in)) {
-					MJClient.createARoom(session, response.getUser());
+					MJClient.getInstance().createARoom();
 				} else {
-					MJClient.joinARoom(session, response.getUser(), new Room(Integer.valueOf(in).intValue()));
+					MJClient.getInstance().joinARoom(Integer.valueOf(in).intValue());
 				}
 			} else {
 				LOG.info("Login failed!");

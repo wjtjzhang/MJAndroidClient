@@ -102,11 +102,11 @@ public class RoomActivity extends Activity{
 
 	private void displayRoom() throws IOException {
 		Log.i("RoomActivity", "Display room start...");
-		if (MJClient.room != null) {
+		if (MJClient.getInstance().getRoom() != null) {
 			displayRoomInfo();
 			displayPlayerHeaderInfo();
 
-			if (MJClient.room.getUsers().size() == 4) {
+			if (MJClient.getInstance().getRoom().getUsers().size() == 4) {
 				displayMine();
 				displayPlayer2();
 				displayPlayer3();
@@ -124,7 +124,7 @@ public class RoomActivity extends Activity{
 			Bitmap bitmap;
 			try {
 				bitmap = BitmapFactory.decodeStream(this.getAssets().open(
-						MJClient.room.getUsers().get(i).getId() + ".png"));
+						MJClient.getInstance().getRoom().getUsers().get(i).getId() + ".png"));
 				headerImagePlaceHolder.setImageBitmap(bitmap);
 			} catch (IOException e) {
 				headerImagePlaceHolder.setBackgroundResource(R.drawable.default_header);
@@ -134,18 +134,18 @@ public class RoomActivity extends Activity{
 
 	private List<User> reOrderUsers() {
 		List<User> users = new ArrayList<User>();
-		int myPosition = MJClient.room.getUsers().indexOf(MJClient.user);
+		int myPosition = MJClient.getInstance().getRoom().getUsers().indexOf(MJClient.getInstance().getUser());
 
-		for (int i = myPosition; i < MJClient.room.getUsers().size(); i++) {
-			users.add(MJClient.room.getUsers().get(i));
+		for (int i = myPosition; i < MJClient.getInstance().getRoom().getUsers().size(); i++) {
+			users.add(MJClient.getInstance().getRoom().getUsers().get(i));
 		}
 
 		for (int i = 0; i < myPosition; i++) {
-			users.add(MJClient.room.getUsers().get(i));
+			users.add(MJClient.getInstance().getRoom().getUsers().get(i));
 		}
 
-		MJClient.room.getUsers().clear();
-		MJClient.room.getUsers().addAll(users);
+		MJClient.getInstance().getRoom().getUsers().clear();
+		MJClient.getInstance().getRoom().getUsers().addAll(users);
 		return users;
 	}
 
@@ -177,15 +177,15 @@ public class RoomActivity extends Activity{
 		SimpleDateFormat format = new SimpleDateFormat("hh:mm", locale);
 		time.setText(format.format(date) + "");
 		TextView roomNo = (TextView) this.findViewById(R.id.roomNo);
-		roomNo.setText(MJClient.room.getId() + "");
+		roomNo.setText(MJClient.getInstance().getRoom().getId() + "");
 	}
 
 	private void displayPlayer4() throws IOException {
 		Log.i("RoomActivity", "Display player4 info...");
 		final LinearLayout player4InCartsLayout = (LinearLayout) this.findViewById(R.id.player4InCarts);
-		List<Cart> player4InCarts = MJClient.room.getInCartsMap().get(MJClient.room.getUsers().get(3));
+		List<Cart> player4InCarts = MJClient.getInstance().getRoom().getInCartsMap().get(MJClient.getInstance().getRoom().getUsers().get(3));
 
-		List<Cart> player4MeetCarts = MJClient.room.getMeetCartsMap().get(MJClient.room.getUsers().get(3));
+		List<Cart> player4MeetCarts = MJClient.getInstance().getRoom().getMeetCartsMap().get(MJClient.getInstance().getRoom().getUsers().get(3));
 		int index = 0;
 		while (index < player4MeetCarts.size()) {
 			Cart cart = player4MeetCarts.get(index);
@@ -268,13 +268,13 @@ public class RoomActivity extends Activity{
 
 		ImageView blankImage = new ImageView(this);
 		blankImage.setMinimumHeight(20);
-		if (MJClient.room.getUsers().get(3).isYourTurn()) {
+		if (MJClient.getInstance().getRoom().getUsers().get(3).isYourTurn()) {
 			player4InCartsLayout.addView(blankImage, player4InCarts.size() - 1);
 		}
 
 		LinearLayout player4OutCartsLayout1 = (LinearLayout) this.findViewById(R.id.player4OutCarts1);
 		LinearLayout player4OutCartsLayout2 = (LinearLayout) this.findViewById(R.id.player4OutCarts2);
-		List<Cart> player4OutCarts = MJClient.room.getOutCartsMap().get(MJClient.room.getUsers().get(3));
+		List<Cart> player4OutCarts = MJClient.getInstance().getRoom().getOutCartsMap().get(MJClient.getInstance().getRoom().getUsers().get(3));
 		for (int i = 0; i < player4OutCarts.size(); i++) {
 			ImageView cartImage = new ImageView(this);
 			Cart cart = player4OutCarts.get(i);
@@ -294,7 +294,7 @@ public class RoomActivity extends Activity{
 		final LinearLayout player3InCartsLayout = (LinearLayout) this.findViewById(R.id.player3InCarts);
 		player3InCartsLayout.removeViewsInLayout(1, player3InCartsLayout.getChildCount() - 1);
 
-		List<Cart> player3InCarts = MJClient.room.getInCartsMap().get(MJClient.room.getUsers().get(2));
+		List<Cart> player3InCarts = MJClient.getInstance().getRoom().getInCartsMap().get(MJClient.getInstance().getRoom().getUsers().get(2));
 		for (int i = 0; i < player3InCarts.size(); i++) {
 			ImageView cartImage = new ImageView(this);
 			Bitmap bitmap = BitmapFactory.decodeStream(this.getAssets().open("player3_bg.png"));
@@ -304,11 +304,11 @@ public class RoomActivity extends Activity{
 
 		ImageView blankImage = new ImageView(this);
 		blankImage.setMinimumWidth(20);
-		if (MJClient.room.getUsers().get(2).isYourTurn()) {
+		if (MJClient.getInstance().getRoom().getUsers().get(2).isYourTurn()) {
 			player3InCartsLayout.addView(blankImage, 2);
 		}
 
-		List<Cart> player3MeetCarts = MJClient.room.getMeetCartsMap().get(MJClient.room.getUsers().get(3));
+		List<Cart> player3MeetCarts = MJClient.getInstance().getRoom().getMeetCartsMap().get(MJClient.getInstance().getRoom().getUsers().get(3));
 		int index = 0;
 		while (index < player3MeetCarts.size()) {
 			Cart cart = player3MeetCarts.get(index);
@@ -384,7 +384,7 @@ public class RoomActivity extends Activity{
 
 		LinearLayout player3OutCartsLayout1 = (LinearLayout) this.findViewById(R.id.player3OutCarts1);
 		LinearLayout player3OutCartsLayout2 = (LinearLayout) this.findViewById(R.id.player3OutCarts2);
-		List<Cart> player3OutCarts = MJClient.room.getOutCartsMap().get(MJClient.room.getUsers().get(2));
+		List<Cart> player3OutCarts = MJClient.getInstance().getRoom().getOutCartsMap().get(MJClient.getInstance().getRoom().getUsers().get(2));
 		for (int i = 0; i < player3OutCarts.size(); i++) {
 			ImageView cartImage = new ImageView(this);
 			Cart cart = player3OutCarts.get(i);
@@ -404,7 +404,7 @@ public class RoomActivity extends Activity{
 		final LinearLayout player2InCartsLayout = (LinearLayout) this.findViewById(R.id.player2Incarts);
 		player2InCartsLayout.removeViewsInLayout(1, player2InCartsLayout.getChildCount() - 1);
 
-		List<Cart> player2InCarts = MJClient.room.getInCartsMap().get(MJClient.room.getUsers().get(1));
+		List<Cart> player2InCarts = MJClient.getInstance().getRoom().getInCartsMap().get(MJClient.getInstance().getRoom().getUsers().get(1));
 		for (int i = 0; i < player2InCarts.size(); i++) {
 			ImageView cartImage = new ImageView(this);
 			Bitmap bitmap = BitmapFactory.decodeStream(this.getAssets().open("player2_bg.png"));
@@ -414,11 +414,11 @@ public class RoomActivity extends Activity{
 
 		ImageView blankImage = new ImageView(this);
 		blankImage.setMinimumHeight(20);
-		if (MJClient.room.getUsers().get(1).isYourTurn()) {
+		if (MJClient.getInstance().getRoom().getUsers().get(1).isYourTurn()) {
 			player2InCartsLayout.addView(blankImage, 2);
 		}
 
-		List<Cart> player2MeetCarts = MJClient.room.getMeetCartsMap().get(MJClient.room.getUsers().get(1));
+		List<Cart> player2MeetCarts = MJClient.getInstance().getRoom().getMeetCartsMap().get(MJClient.getInstance().getRoom().getUsers().get(1));
 		int index = 0;
 		while (index < player2MeetCarts.size()) {
 			Cart cart = player2MeetCarts.get(index);
@@ -493,7 +493,7 @@ public class RoomActivity extends Activity{
 
 		LinearLayout player2OutCartsLayout1 = (LinearLayout) this.findViewById(R.id.player2OutCarts1);
 		LinearLayout player2OutCartsLayout2 = (LinearLayout) this.findViewById(R.id.player2OutCarts2);
-		List<Cart> player2OutCarts = MJClient.room.getOutCartsMap().get(MJClient.room.getUsers().get(1));
+		List<Cart> player2OutCarts = MJClient.getInstance().getRoom().getOutCartsMap().get(MJClient.getInstance().getRoom().getUsers().get(1));
 		for (int i = 0; i < player2OutCarts.size(); i++) {
 			ImageView cartImage = new ImageView(this);
 			Cart cart = player2OutCarts.get(i);
@@ -513,7 +513,7 @@ public class RoomActivity extends Activity{
 		final LinearLayout myInCartsLayout = (LinearLayout) this.findViewById(R.id.myInCarts);
 		myInCartsLayout.removeAllViews();
 
-		List<Cart> myMeetCarts = MJClient.room.getMeetCartsMap().get(MJClient.user);
+		List<Cart> myMeetCarts = MJClient.getInstance().getRoom().getMeetCartsMap().get(MJClient.getInstance().getUser());
 		int index = 0;
 		while (index < myMeetCarts.size()) {
 			Cart cart = myMeetCarts.get(index);
@@ -582,11 +582,11 @@ public class RoomActivity extends Activity{
 
 		handleAction();
 
-		List<Cart> myInCarts = MJClient.room.getInCartsMap().get(MJClient.user);
+		List<Cart> myInCarts = MJClient.getInstance().getRoom().getInCartsMap().get(MJClient.getInstance().getUser());
 		for (int i = 0; i < myInCarts.size(); i++) {
 			Cart cart = myInCarts.get(i);
 			ImageView cartImage = loadCartImageData(cart,17f);
-			if (MJClient.user.isYourTurn()) {
+			if (MJClient.getInstance().getUser().isYourTurn()) {
 				cartImage.setOnClickListener(new CartOnClickListener());
 			} else {
 				cartImage.setOnClickListener(null);
@@ -601,7 +601,7 @@ public class RoomActivity extends Activity{
 
 		ImageView blankImage = new ImageView(this);
 		blankImage.setMinimumWidth(30);
-		if (MJClient.user.isYourTurn()) {
+		if (MJClient.getInstance().getUser().isYourTurn()) {
 			myInCartsLayout.addView(blankImage, myInCartsLayout.getChildCount() - 1);
 		}
 
@@ -609,7 +609,7 @@ public class RoomActivity extends Activity{
 		LinearLayout myOutCartsLayout2 = (LinearLayout) this.findViewById(R.id.myOutCarts2);
 		myOutCartsLayout1.removeAllViews();
 		myOutCartsLayout2.removeAllViews();
-		List<Cart> myOutCarts = MJClient.room.getOutCartsMap().get(MJClient.user);
+		List<Cart> myOutCarts = MJClient.getInstance().getRoom().getOutCartsMap().get(MJClient.getInstance().getUser());
 		for (int i = 0; i < myOutCarts.size(); i++) {
 			Cart cart = myOutCarts.get(i);
 			ImageView cartImage = loadCartImageData(cart, 22f);
@@ -627,8 +627,8 @@ public class RoomActivity extends Activity{
 		LinearLayout actionsLayout = (LinearLayout) this.findViewById(R.id.actions);
 		actionsLayout.removeViewsInLayout(1, actionsLayout.getChildCount() - 1);
 
-		if (MJClient.user.isYourTurn()) {
-			if (MJClient.user.isWin() && !MJClient.user.getMeetType().equals(MeetType.AN_GANG)) {
+		if (MJClient.getInstance().getUser().isYourTurn()) {
+			if (MJClient.getInstance().getUser().isWin() && !MJClient.getInstance().getUser().getMeetType().equals(MeetType.AN_GANG)) {
 				ImageView winImage = new ImageView(this);
 				winImage.setTag(UserAction.WIN);
 				winImage.setOnClickListener(new ActionOnClickListener());
@@ -637,7 +637,7 @@ public class RoomActivity extends Activity{
 				actionsLayout.addView(winImage);
 				return;
 
-			} else if (MJClient.user.isWin() && MJClient.user.getMeetType().equals(MeetType.AN_GANG)) {
+			} else if (MJClient.getInstance().getUser().isWin() && MJClient.getInstance().getUser().getMeetType().equals(MeetType.AN_GANG)) {
 				ImageView winImage = new ImageView(this);
 				winImage.setTag(UserAction.WIN);
 				Bitmap bitmap = BitmapFactory.decodeStream(this.getAssets().open("win.png"));
@@ -654,7 +654,7 @@ public class RoomActivity extends Activity{
 				return;
 			}
 
-			switch (MJClient.user.getMeetType()) {
+			switch (MJClient.getInstance().getUser().getMeetType()) {
 			case PENG:
 				ImageView pengImage = new ImageView(this);
 				pengImage.setTag(UserAction.PENG);
@@ -744,11 +744,11 @@ public class RoomActivity extends Activity{
 				Cart cart = (Cart) cartImage.getTag();
 				cart.setCartStatus(CartStatus.OUT);
 				cart.setPlayTime(System.currentTimeMillis());
-				MJClient.room.setCurrentPutCart(cart);
-				MJClient.room.getInCartsMap().get(MJClient.user).remove(cart);
-				MJClient.room.getOutCartsMap().get(MJClient.user).add(cart);
+				MJClient.getInstance().getRoom().setCurrentPutCart(cart);
+				MJClient.getInstance().getRoom().getInCartsMap().get(MJClient.getInstance().getUser()).remove(cart);
+				MJClient.getInstance().getRoom().getOutCartsMap().get(MJClient.getInstance().getUser()).add(cart);
 
-				MJClient.send(Action.GAME_PUT_CART);
+				MJClient.getInstance().send(Action.GAME_PUT_CART);
 				try {
 					displayMine();
 				} catch (IOException e) {

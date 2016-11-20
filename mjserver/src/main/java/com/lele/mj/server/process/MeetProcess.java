@@ -54,7 +54,7 @@ public class MeetProcess {
 			break;
 		}
 
-		MJServer.notifyRoomMates(new Response(nextAction, request.getUser(), room), room);
+		MJServer.notifyRoomMates(nextAction, room);
 	}
 
 	public static boolean processMeetRequestWithPutCart(Request request, Room room) {

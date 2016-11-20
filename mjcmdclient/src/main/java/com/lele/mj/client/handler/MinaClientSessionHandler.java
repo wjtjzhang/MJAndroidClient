@@ -6,6 +6,7 @@ import org.apache.mina.core.session.IoSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.lele.entity.Request;
 import com.lele.entity.Response;
 import com.lele.mj.client.MJClient;
 
@@ -40,13 +41,12 @@ public class MinaClientSessionHandler implements IoHandler {
 	public void messageReceived(IoSession session, Object message) throws Exception {
 		LOG.info("Message Received - {}", message);
 		Response response = (Response) message;
-		MJClient.serviceMap.get(response.getAction()).process(response, session);
+		MJClient.getInstance().getServiceMap().get(response.getAction()).process(response, session);
 
 	}
 
 	public void messageSent(IoSession session, Object message) throws Exception {
-		LOG.info("messageSent");
-
+		LOG.info("Message sent - {}", message);
 	}
 
 	public void inputClosed(IoSession session) throws Exception {

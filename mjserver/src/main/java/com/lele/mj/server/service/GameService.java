@@ -17,6 +17,7 @@ public class GameService implements Service {
 	Logger LOG = LoggerFactory.getLogger(GameService.class);
 
 	public void process(Request request, IoSession session) throws IOException {
+		LOG.info("Request {}", request);
 		switch (request.getAction()) {
 		case GAME_CREATE_ROOM:
 			RoomProcess.createRoom(request, session, Action.GAME_CREATE_ROOM);

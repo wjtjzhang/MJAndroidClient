@@ -35,7 +35,7 @@ public class MJDatabase {
 	}
 	
 	public static void main(String[] args) {
-		MJDatabase.cleanDatabase();
+		//MJDatabase.cleanDatabase();
 		MJDatabase.buildDatabase();
 		MJDatabase.addTestUsers();
 	}

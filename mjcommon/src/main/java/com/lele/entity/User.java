@@ -15,6 +15,7 @@ public class User implements Serializable {
 	private String name;
 	private String password;
 	private boolean onLive;
+	private int roomId;
 
 	public User(String id) {
 		super();
@@ -132,5 +133,11 @@ public class User implements Serializable {
 		
 	}
 
+	public int getRoomId() {
+		return roomId;
+	}
 
+	public void setRoomId(int roomId) {
+		this.roomId = roomId;
+	}
 }

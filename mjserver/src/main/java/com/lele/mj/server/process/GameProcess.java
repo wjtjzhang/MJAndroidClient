@@ -32,7 +32,7 @@ public class GameProcess {
 			nextPlayer(request, room);
 		}
 
-		MJServer.notifyRoomMates(new Response(nextAction, request.getUser(), room), room);
+		MJServer.notifyRoomMates(nextAction, room);
 	}
 
 	private static void nextPlayer(Request request, Room room) {
@@ -71,14 +71,14 @@ public class GameProcess {
 			dao.updateRoomCart(dbUser);
 		}
 		ScoreManager.calclateWin(room);
-		MJServer.notifyRoomMates(new Response(nextAction, request.getUser(), room), room);
+		MJServer.notifyRoomMates(nextAction, room);
 	}
 
 	public static void handleOver(Request request,Action nextAction) throws IOException {
 		Room room = (Room) request.getObject();
 		MJServer.rooms.remove(room);
 		MJServer.rooms.add(room);
-		MJServer.notifyRoomMates(new Response(nextAction, request.getUser(), room), room);
+		MJServer.notifyRoomMates(nextAction, room);
 	}
 
 	public static void initGame(Request request) throws IOException {
@@ -91,7 +91,7 @@ public class GameProcess {
 		initRoom(room);
 		initUsers(room);
 		dispatchCarts(room);
-		MJServer.notifyRoomMates(new Response(Action.GAME_PUT_CART, request.getUser(), room), room);
+		MJServer.notifyRoomMates(Action.GAME_PUT_CART, room);
 	}
 
 	private static void initUsers(Room room) {
@@ -140,7 +140,7 @@ public class GameProcess {
 		int host = random.nextInt(4);
 		User hostUser = room.getUsers().get(0);
 		CartProcess.getAndProcessNewCart(hostUser, room);
-		LOG.info("Host £º{}", hostUser);
+		LOG.info("Host user {}", hostUser);
 	}
 
 	private static void mockCarts(Room room) {

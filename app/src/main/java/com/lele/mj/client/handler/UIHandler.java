@@ -28,7 +28,7 @@ public class UIHandler extends Handler {
 		case UIStatus.LOGIN_SUCCESS:
 			intent = new Intent();
 			User user = (User) msg.obj;
-			MJClient.user = user;
+			MJClient.getInstance().setUser(user);
 			intent.setClass(activity, HallActivity.class);
 			activity.startActivity(intent);
 			break;

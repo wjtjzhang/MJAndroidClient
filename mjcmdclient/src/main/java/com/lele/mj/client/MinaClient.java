@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 
+import org.apache.log4j.PropertyConfigurator;
 import org.apache.mina.core.RuntimeIoException;
 import org.apache.mina.core.future.ConnectFuture;
 import org.apache.mina.core.session.IoSession;
@@ -17,10 +18,12 @@ import com.lele.mj.client.handler.MinaClientSessionHandler;
 public class MinaClient {
 
 	private static final long CONNECT_TIMEOUT = 100000;
-	private static final String HOST = "192.168.3.17";
+	private static final String HOST = "192.168.3.21";
 	private static final int PORT = 2017;
 
 	public static void main(String[] args) throws ClassNotFoundException, IOException {
+		PropertyConfigurator.configure("log4j.properties");
+
 		NioSocketConnector connector = new NioSocketConnector();
 		connector.setConnectTimeoutMillis(CONNECT_TIMEOUT);
 		connector.setHandler(new MinaClientSessionHandler());
@@ -34,16 +37,18 @@ public class MinaClient {
 				ConnectFuture future = connector.connect(new InetSocketAddress(InetAddress.getByName(HOST), PORT));
 	            future.awaitUninterruptibly();
 	            session = future.getSession();
-	            User user=new User("111");
-	            session.write(user);
-	            break;
-	        } catch (RuntimeIoException e) {
+				MJClient.getInstance().setSession(session);
+				//User user=new User("111");
+				//session.write(user);
+				break;
+			} catch (RuntimeIoException e) {
 	            e.printStackTrace();
 	        }
 	    }
 		
 		User user = new User(args[0]);
 		user.setPassword(args[1]);
-		MJClient.login(session, user);
+		MJClient.getInstance().setUser(user);
+		MJClient.getInstance().login();
 	}
 }

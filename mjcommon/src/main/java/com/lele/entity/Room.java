@@ -1,5 +1,7 @@
 package com.lele.entity;
 
+import org.apache.mina.core.session.IoSession;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -135,4 +137,11 @@ public class Room implements Serializable {
 		this.roomOwner = roomOwner;
 	}
 
+	@Override
+	public String toString() {
+		return "Room{" +
+				"users=" + users +
+				", id=" + id +
+				'}';
+	}
 }
