@@ -45,8 +45,7 @@ public class MainActivity extends Activity {
 		
 		Button localLogin = (Button) this.findViewById(R.id.localLogin);
 		localLogin.setOnClickListener(new LoginOnClickListener());
-
-		//new Thread(networkTask).start();
+		new Thread(networkTask).start();
 	}
 
 	private void connectMJServer() {

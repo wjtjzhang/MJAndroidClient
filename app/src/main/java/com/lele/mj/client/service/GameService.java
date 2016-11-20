@@ -8,6 +8,7 @@ import com.lele.entity.Action;
 import com.lele.entity.Request;
 import com.lele.entity.Response;
 import com.lele.entity.Room;
+import com.lele.mj.client.MJClient;
 import com.lele.mj.common.UIStatus;
 
 import org.apache.mina.core.session.IoSession;
@@ -19,6 +20,7 @@ public class GameService implements Service {
 
     public void process(Response response, IoSession session, Handler handler) throws IOException {
         Room room = ((Room) response.getObject());
+        MJClient.getInstance().setRoom(room);
         switch (response.getAction()) {
             case GAME_CREATE_ROOM:
                 Log.i("", "Room have been created successfully - " + room);
