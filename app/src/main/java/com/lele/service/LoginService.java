@@ -1,4 +1,4 @@
-package com.lele.mj.client.service;
+package com.lele.service;
 
 import java.io.IOException;
 
@@ -9,7 +9,7 @@ import android.os.Message;
 import android.util.Log;
 
 import com.lele.entity.Response;
-import com.lele.mj.common.UIStatus;
+import com.lele.action.UIStatus;
 
 public class LoginService implements Service {
 

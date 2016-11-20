@@ -1,4 +1,4 @@
-package com.lele.mjclient;
+package com.lele.activity;
 
 import java.io.IOException;
 import java.net.InetAddress;
@@ -20,10 +20,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.lele.activity.R;
-import com.lele.mj.client.MJClient;
-import com.lele.mj.client.handler.MinaClientSessionHandler;
-import com.lele.mj.client.handler.UIHandler;
+import com.lele.MJClient;
+import com.lele.handler.MinaClientSessionHandler;
+import com.lele.handler.UIHandler;
 
 public class MainActivity extends Activity {
 

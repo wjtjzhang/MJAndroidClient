@@ -1,4 +1,4 @@
-package com.lele.mj.client.service;
+package com.lele.service;
 
 import java.io.IOException;
 

@@ -1,4 +1,4 @@
-package com.lele.mj.client.handler;
+package com.lele.handler;
 
 import org.apache.mina.core.service.IoHandler;
 import org.apache.mina.core.session.IdleStatus;
@@ -8,7 +8,7 @@ import android.os.Handler;
 import android.util.Log;
 
 import com.lele.entity.Response;
-import com.lele.mj.client.MJClient;
+import com.lele.MJClient;
 
 public class MinaClientSessionHandler implements IoHandler {
 	private Handler handler;

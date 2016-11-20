@@ -1,23 +1,22 @@
-package com.lele.mj.client;
-
-import java.io.IOException;
-import java.security.PrivateKey;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
-
-import org.apache.mina.core.session.IoSession;
+package com.lele;
 
 import com.lele.entity.Action;
 import com.lele.entity.Request;
 import com.lele.entity.Room;
 import com.lele.entity.User;
-import com.lele.mj.action.ChatAction;
-import com.lele.mj.action.RoomAction;
-import com.lele.mj.client.service.ErrorService;
-import com.lele.mj.client.service.GameService;
-import com.lele.mj.client.service.HallService;
-import com.lele.mj.client.service.LoginService;
-import com.lele.mj.client.service.Service;
+import com.lele.action.ChatAction;
+import com.lele.action.RoomAction;
+import com.lele.service.ErrorService;
+import com.lele.service.GameService;
+import com.lele.service.HallService;
+import com.lele.service.LoginService;
+import com.lele.service.Service;
+
+import org.apache.mina.core.session.IoSession;
+
+import java.io.IOException;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class MJClient {
 

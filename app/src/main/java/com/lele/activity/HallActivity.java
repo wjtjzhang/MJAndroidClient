@@ -1,13 +1,12 @@
-package com.lele.mjclient;
+package com.lele.activity;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import com.lele.activity.R;
 
-import com.lele.mj.client.MJClient;
+import com.lele.MJClient;
 
 public class HallActivity extends Activity implements OnClickListener {
 

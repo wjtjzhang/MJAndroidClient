@@ -1,4 +1,4 @@
-package com.lele.mj.client.handler;
+package com.lele.handler;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -7,10 +7,10 @@ import android.os.Message;
 import android.util.Log;
 
 import com.lele.entity.User;
-import com.lele.mj.client.MJClient;
-import com.lele.mj.common.UIStatus;
-import com.lele.mjclient.HallActivity;
-import com.lele.mjclient.RoomActivity;
+import com.lele.MJClient;
+import com.lele.action.UIStatus;
+import com.lele.activity.HallActivity;
+import com.lele.activity.RoomActivity;
 
 public class UIHandler extends Handler {
 	private Intent intent;

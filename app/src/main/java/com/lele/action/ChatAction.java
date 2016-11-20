@@ -1,4 +1,4 @@
-package com.lele.mj.action;
+package com.lele.action;
 
 import java.io.BufferedReader;
 import java.io.IOException;

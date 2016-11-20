@@ -1,4 +1,4 @@
-package com.lele.mj.client.service;
+package com.lele.service;
 
 import android.os.Handler;
 import android.os.Message;
@@ -8,8 +8,8 @@ import com.lele.entity.Action;
 import com.lele.entity.Request;
 import com.lele.entity.Response;
 import com.lele.entity.Room;
-import com.lele.mj.client.MJClient;
-import com.lele.mj.common.UIStatus;
+import com.lele.MJClient;
+import com.lele.action.UIStatus;
 
 import org.apache.mina.core.session.IoSession;
 

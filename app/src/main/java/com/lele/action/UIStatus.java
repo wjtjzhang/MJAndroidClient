@@ -1,4 +1,4 @@
-package com.lele.mj.common;
+package com.lele.action;
 
 public class UIStatus {
 
