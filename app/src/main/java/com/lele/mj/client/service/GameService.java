@@ -16,11 +16,11 @@ import org.apache.mina.core.session.IoSession;
 import java.io.IOException;
 
 public class GameService implements Service {
-    Message msg = new Message();
-
     public void process(Response response, IoSession session, Handler handler) throws IOException {
         Room room = ((Room) response.getObject());
+        MJClient.getInstance().setUser(response.getUser());
         MJClient.getInstance().setRoom(room);
+        Message msg = handler.obtainMessage();
         switch (response.getAction()) {
             case GAME_CREATE_ROOM:
                 Log.i("", "Room have been created successfully - " + room);
@@ -28,6 +28,7 @@ public class GameService implements Service {
                 break;
             case GAME_WAIT:
                 msg.what = UIStatus.GAME_WAIT;
+                handler.obtainMessage();
                 handler.sendMessage(msg);
                 Log.i("", "Join room sucessfully, wait for other players " + room.getUsers().size() + "/4..."
                         + room);
