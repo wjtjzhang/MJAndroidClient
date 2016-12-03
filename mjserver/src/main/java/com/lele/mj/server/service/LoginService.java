@@ -21,6 +21,7 @@ public class LoginService implements Service {
 		boolean loginSuccess;
 		User user = request.getUser();
 		if (isValidLogin(user)) {
+			user.setRoomCart(20);
 			LOG.info("User {} login successfuly.", user);
 			MJServer.sessions.put(user, session);
 			loginSuccess = true;
@@ -35,7 +36,6 @@ public class LoginService implements Service {
 		UserDao dao = new UserDao();
 		User dbUser = dao.getUser(user.getId());
 		if (dbUser == null) {
-			user.setRoomCart(20);
 			dao.insert(user);
 		}
 		return true;

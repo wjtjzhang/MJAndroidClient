@@ -22,7 +22,7 @@ public class MJDatabase {
 	}
 	
 	public static void addTestUsers() {
-		jdbcTemplate.batchUpdate("INSERT INTO USER VALUES('Jordan','Jordan','P1','2');");
+		jdbcTemplate.batchUpdate("INSERT INTO USER VALUES('Me','Me','P1','2');");
 		jdbcTemplate.batchUpdate("INSERT INTO USER VALUES('Kelly','Kelly','P1','2');");
 		jdbcTemplate.batchUpdate("INSERT INTO USER VALUES('Father','Father','P1','2');");
 		jdbcTemplate.batchUpdate("INSERT INTO USER VALUES('Mother','Mother','P1','2');");
@@ -35,7 +35,7 @@ public class MJDatabase {
 	}
 	
 	public static void main(String[] args) {
-		//MJDatabase.cleanDatabase();
+		MJDatabase.cleanDatabase();
 		MJDatabase.buildDatabase();
 		MJDatabase.addTestUsers();
 	}

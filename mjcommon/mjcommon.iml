@@ -28,7 +28,9 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" name="mina-core-2.0.13" level="project" />
+    <orderEntry type="library" exported="" name="junit-4.12" level="project" />
     <orderEntry type="library" exported="" name="slf4j-api-1.7.14" level="project" />
+    <orderEntry type="library" exported="" name="hamcrest-core-1.3" level="project" />
     <orderEntry type="library" exported="" name="mjcommon.mjcommon" level="project" />
   </component>
 </module>

@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/final_win_label_value"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/mj_bg">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:id="@+id/baseline"
+        android:layout_alignParentBottom="false"
+        android:background="@android:color/holo_orange_dark"
+        android:layout_centerInParent="true"
+        android:contentDescription="@string/baseline_for_relative_layout" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/header"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentStart="false"
+        android:src="@drawable/ic_launcher"
+        android:layout_margin="5dp"
+        android:layout_alignParentTop="false"
+        android:layout_centerHorizontal="true"
+        android:contentDescription="@string/header_image" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:id="@+id/zmLabel"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/header"
+        android:layout_toLeftOf="@+id/baseline"
+        android:gravity="center"
+        android:text="自摸次数："
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="5dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:id="@+id/zmValue"
+        android:layout_below="@+id/header"
+        android:layout_marginEnd="114dp"
+        android:layout_toRightOf="@+id/baseline"
+        android:layout_alignParentEnd="false"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentRight="true"
+        android:gravity="center"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="5dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:id="@+id/jpLabel"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/zmLabel"
+        android:layout_toLeftOf="@+id/baseline"
+        android:layout_margin="5dp"
+        android:gravity="center"
+        android:text="接炮次数：" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:id="@+id/jpValue"
+        android:layout_below="@+id/zmValue"
+        android:layout_marginEnd="114dp"
+        android:layout_toRightOf="@+id/baseline"
+        android:layout_alignParentEnd="false"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentRight="true"
+        android:layout_margin="5dp"
+        android:gravity="center" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:id="@+id/dpLabel"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/jpLabel"
+        android:layout_toLeftOf="@+id/baseline"
+        android:layout_margin="5dp"
+        android:gravity="center"
+        android:text="点炮次数：" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:id="@+id/dpValue"
+        android:layout_below="@+id/jpValue"
+        android:layout_marginEnd="114dp"
+        android:layout_toRightOf="@+id/baseline"
+        android:layout_alignParentEnd="false"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentRight="true"
+        android:layout_margin="5dp"
+        android:gravity="center" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="暗杠次数："
+        android:id="@+id/agLabel"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/dpLabel"
+        android:layout_toLeftOf="@+id/baseline"
+        android:layout_margin="5dp"
+        android:gravity="center" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:id="@+id/agValue"
+        android:layout_below="@+id/dpValue"
+        android:layout_marginEnd="114dp"
+        android:layout_toRightOf="@+id/baseline"
+        android:layout_alignParentEnd="false"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentRight="true"
+        android:layout_margin="5dp"
+        android:gravity="center" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="明杠次数："
+        android:id="@+id/mgLabel"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/agLabel"
+        android:layout_toLeftOf="@+id/baseline"
+        android:layout_margin="5dp"
+        android:gravity="center" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:id="@+id/mgValue"
+        android:layout_below="@+id/agValue"
+        android:layout_marginEnd="114dp"
+        android:layout_toRightOf="@+id/baseline"
+        android:layout_alignParentEnd="false"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentRight="true"
+        android:layout_margin="5dp"
+        android:gravity="center" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="总成绩"
+        android:id="@+id/totalScoreLabel"
+        android:layout_below="@+id/mgLabel"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:id="@+id/totalScoreValue"
+        android:layout_below="@+id/totalScoreLabel"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="5dp" />
+
+</RelativeLayout>

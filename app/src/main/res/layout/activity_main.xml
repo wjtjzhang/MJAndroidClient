@@ -18,12 +18,12 @@
         android:text="游客登陆" />
 
     <ImageView
-        android:id="@+id/joinRoom"
+        android:id="@+id/myHeaderIcon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/localLogin"
         android:layout_toRightOf="@+id/localLogin"
-        android:src="@drawable/ic_launcher" />
+        android:src="@drawable/default_header" />
 
     <Button
         android:id="@+id/wechatLogin"

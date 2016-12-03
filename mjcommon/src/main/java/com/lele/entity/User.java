@@ -16,6 +16,13 @@ public class User implements Serializable {
 	private String password;
 	private boolean onLive;
 	private int roomId;
+	private String scoreDetail;
+	private int zmValue;
+	private int jpValue;
+	private int dpValue;
+	private int agValue;
+	private int mgValue;
+	private byte[] icon;
 
 	public User(String id) {
 		super();
@@ -139,5 +146,61 @@ public class User implements Serializable {
 
 	public void setRoomId(int roomId) {
 		this.roomId = roomId;
+	}
+
+	public String getScoreDetail() {
+		return scoreDetail;
+	}
+
+	public void setScoreDetail(String scoreDetail) {
+		this.scoreDetail = scoreDetail;
+	}
+
+	public int getZmValue() {
+		return zmValue;
+	}
+
+	public void setZmValue(int zmValue) {
+		this.zmValue = zmValue;
+	}
+
+	public int getJpValue() {
+		return jpValue;
+	}
+
+	public void setJpValue(int jpValue) {
+		this.jpValue = jpValue;
+	}
+
+	public int getDpValue() {
+		return dpValue;
+	}
+
+	public void setDpValue(int dpValue) {
+		this.dpValue = dpValue;
+	}
+
+	public int getAgValue() {
+		return agValue;
+	}
+
+	public void setAgValue(int agValue) {
+		this.agValue = agValue;
+	}
+
+	public int getMgValue() {
+		return mgValue;
+	}
+
+	public void setMgValue(int mgValue) {
+		this.mgValue = mgValue;
+	}
+
+	public void setIcon(byte[] icon) {
+		this.icon = icon;
+	}
+
+	public byte[] getIcon() {
+		return icon;
 	}
 }

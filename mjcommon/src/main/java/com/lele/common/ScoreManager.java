@@ -8,6 +8,7 @@ public class ScoreManager {
 		for (User user : room.getUsers()) {
 			if (user.isWin()) {
 				user.setScore(user.getScore() + 6);
+				user.setZmValue(user.getZmValue() + 1);
 			} else {
 				user.setScore(user.getScore() - 2);
 			}
@@ -18,10 +19,12 @@ public class ScoreManager {
 		for (User user : room.getUsers()) {
 			if (user.equals(inputUser)) {
 				user.setScore(user.getScore() + 3);
+				user.setJpValue(user.getJpValue() + 1);
 			}
 
 			if (user.equals(inputUser.getMeetTriggerUser())) {
 				user.setScore(user.getScore() - 3);
+				user.setDpValue(user.getDpValue() + 1);
 			}
 		}
 	}
@@ -30,6 +33,7 @@ public class ScoreManager {
 		for (User user : room.getUsers()) {
 			if (user.equals(inputUser)) {
 				user.setScore(user.getScore() + 3);
+				user.setMgValue(user.getMgValue() + 1);
 			} else {
 				user.setScore(user.getScore() - 1);
 			}
@@ -40,6 +44,7 @@ public class ScoreManager {
 		for (User user : room.getUsers()) {
 			if (user.equals(inputUser)) {
 				user.setScore(user.getScore() + 6);
+				user.setAgValue(user.getAgValue() + 1);
 			} else {
 				user.setScore(user.getScore() - 2);
 			}

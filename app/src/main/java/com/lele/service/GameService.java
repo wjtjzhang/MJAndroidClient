@@ -40,7 +40,7 @@ public class GameService implements Service {
                     msg.what = UIStatus.GAME_PUT_CART;
                     handler.sendMessage(msg);
                 } else {
-                    msg.what = UIStatus.DISPLAY_SCORE;
+                    msg.what = UIStatus.WIN_DIALOG;
                     handler.sendMessage(msg);
                     Log.i("", "game is over and no one win. caculate scope...");
                 }
@@ -48,7 +48,7 @@ public class GameService implements Service {
 
             case GAME_WIN:
                 Log.i("", "game is over and someone win. caculate scope...");
-                msg.what = UIStatus.DISPLAY_SCORE;
+                msg.what = UIStatus.WIN_DIALOG;
                 handler.sendMessage(msg);
                 break;
 

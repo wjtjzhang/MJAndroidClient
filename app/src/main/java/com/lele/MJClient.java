@@ -59,8 +59,8 @@ public class MJClient {
 		serviceMap.put(Action.LOGIN, new LoginService());
 	}
 
-	public void login(String userId) throws IOException, ClassNotFoundException {
-		Request request = new Request(Action.LOGIN, new User(userId), null);
+	public void login(User user) throws IOException, ClassNotFoundException {
+		Request request = new Request(Action.LOGIN, user, null);
 		session.write(request);
 	}
 

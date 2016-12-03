@@ -7,7 +7,7 @@ public class MockEntity {
 	public static Map<String, User> users;
 
 	static {
-		User user1 = new User("Jordan");
+		User user1 = new User("Me");
 		user1.setRoomCart(3);
 		users.put(user1.getId(),user1);
 		

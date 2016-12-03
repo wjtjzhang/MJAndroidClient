@@ -18,23 +18,12 @@
         android:minWidth="20dp" />
 
     <ImageView
-        android:id="@+id/createRoom"
+        android:id="@+id/myIcon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@id/baseline"
         android:layout_centerInParent="true"
         android:layout_marginLeft="20dp"
-        android:layout_toRightOf="@id/baseline"
-        android:src="@drawable/ic_launcher" />
-    
-    <ImageView
-        android:id="@+id/joinRoom"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@id/baseline"
-        android:layout_centerVertical="true"
-        android:layout_marginRight="20dp"
-        android:layout_toLeftOf="@+id/baseline"
         android:src="@drawable/ic_launcher" />
 
     <Button

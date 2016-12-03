@@ -1,8 +1,10 @@
 package com.lele.activity;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Bitmap;
@@ -13,7 +15,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.util.LruCache;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.view.WindowManager;
 import android.widget.ImageView;
@@ -22,14 +26,17 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.lele.MJClient;
+import com.lele.action.UIStatus;
 import com.lele.entity.Action;
 import com.lele.entity.Cart;
 import com.lele.entity.CartStatus;
 import com.lele.entity.CartType;
 import com.lele.entity.MeetType;
 import com.lele.entity.User;
-import com.lele.entity.UserAction;
+import com.lele.util.BitmapUtil;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -41,22 +48,59 @@ public class RoomActivity extends Activity {
     private View selectedCart;
     private Locale locale = Locale.CHINA;
     private LruCache<String, Bitmap> memoryCache;
+    private MyBroadcastReceiver broadcastReceiver;
+    private Point winSize;
+    private boolean isRefresh;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_room);
 
-        IntentFilter intentFilter = new IntentFilter();
-        intentFilter.addAction("refreshRoom");
-        registerReceiver(new MyBroadcastReceiver(), intentFilter);
+        broadcastReceiver = new MyBroadcastReceiver();
+        registerBroadcastReceiver(broadcastReceiver);
+    }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
         try {
+            initWinSize();
             loadImageIntoCache();
             displayRoom();
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
+
+    private void initWinSize() {
+        WindowManager windowManager = (WindowManager) this.getSystemService(WINDOW_SERVICE);
+        winSize = new Point();
+        windowManager.getDefaultDisplay().getSize(winSize);
+    }
+
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        unregisterReceiver(broadcastReceiver);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        registerBroadcastReceiver(broadcastReceiver);
+    }
+
+    private void registerBroadcastReceiver(BroadcastReceiver broadcastReceiver) {
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction("refreshRoom");
+        registerReceiver(broadcastReceiver, intentFilter);
     }
 
     private void loadImageIntoCache() throws IOException {
@@ -105,11 +149,25 @@ public class RoomActivity extends Activity {
             displayRoomInfo();
             displayPlayerHeaderInfo();
 
-            if (MJClient.getInstance().getRoom().getUsers().size() == 4) {
-                displayMine();
-                displayPlayer2();
-                displayPlayer3();
-                displayPlayer4();
+            List<User> users = MJClient.getInstance().getRoom().getUsers();
+            if (users.size() == 4) {
+                if (isRefresh) {
+                    if (users.get(0).isYourTurn()) {
+                        displayMine();
+                    } else if (users.get(1).isYourTurn()) {
+                        displayPlayer2();
+                    } else if (users.get(2).isYourTurn()) {
+                        displayPlayer3();
+                    } else if (users.get(3).isYourTurn()) {
+                        displayPlayer4();
+                    }
+                } else {
+                    displayMine();
+                    displayPlayer2();
+                    displayPlayer3();
+                    displayPlayer4();
+                    isRefresh = true;
+                }
             }
         }
     }
@@ -119,14 +177,26 @@ public class RoomActivity extends Activity {
         List<User> users = reOrderUsers();
 
         for (int i = 0; i < users.size(); i++) {
+            User user = users.get(i);
             ImageView headerImagePlaceHolder = getImagePlaceHolder(i);
-            Bitmap bitmap;
             try {
-                bitmap = BitmapFactory.decodeStream(this.getAssets().open(
-                        MJClient.getInstance().getRoom().getUsers().get(i).getId() + ".png"));
-                headerImagePlaceHolder.setImageBitmap(bitmap);
-            } catch (IOException e) {
-                headerImagePlaceHolder.setBackgroundResource(R.drawable.default_header);
+                byte[] userIcon = null;
+
+                if (users.size() == 4) {
+                    user.setIcon(null);
+                    FileInputStream fis = openFileInput(user.getId());
+                    fis.read(userIcon);
+                    fis.close();
+                } else {
+                    userIcon = user.getIcon();
+                    FileOutputStream fos = openFileOutput(user.getId(), Context.MODE_PRIVATE);
+                    fos.write(user.getIcon());
+                    fos.close();
+                }
+                Bitmap bitmap = BitmapUtil.bytes2Bimap(userIcon);
+                headerImagePlaceHolder.setImageBitmap(BitmapUtil.getScaleBitmap(bitmap, winSize.y / 10.0f));
+            } catch (Exception e) {
+                headerImagePlaceHolder.setImageBitmap(BitmapUtil.getScaleBitmap(BitmapUtil.createCircleImage(BitmapFactory.decodeResource(getResources(), R.drawable.default_header)), winSize.y / 10.0f));
             }
         }
     }
@@ -182,6 +252,7 @@ public class RoomActivity extends Activity {
     private void displayPlayer4() throws IOException {
         Log.i("RoomActivity", "Display player4 info...");
         final LinearLayout player4InCartsLayout = (LinearLayout) this.findViewById(R.id.player4InCarts);
+        player4InCartsLayout.removeAllViews();
         List<Cart> player4InCarts = MJClient.getInstance().getRoom().getInCartsMap().get(MJClient.getInstance().getRoom().getUsers().get(3));
 
         List<Cart> player4MeetCarts = MJClient.getInstance().getRoom().getMeetCartsMap().get(MJClient.getInstance().getRoom().getUsers().get(3));
@@ -267,6 +338,7 @@ public class RoomActivity extends Activity {
 
         ImageView blankImage = new ImageView(this);
         blankImage.setMinimumHeight(20);
+
         if (MJClient.getInstance().getRoom().getUsers().get(3).isYourTurn()) {
             player4InCartsLayout.addView(blankImage, player4InCarts.size() - 1);
         }
@@ -606,7 +678,7 @@ public class RoomActivity extends Activity {
 
         ImageView blankImage = new ImageView(this);
         blankImage.setMinimumWidth(30);
-        if (MJClient.getInstance().getUser().isYourTurn() && !isActionRequired) {
+        if (MJClient.getInstance().getUser().isYourTurn() && !isActionRequired && MJClient.getInstance().getRoom().getCurrentGetCart() != null) {
             myInCartsLayout.addView(blankImage, myInCartsLayout.getChildCount() - 1);
         }
 
@@ -711,9 +783,6 @@ public class RoomActivity extends Activity {
 
     private Bitmap getScaleBitmapX(Bitmap bitmap, float numberForFullScreen, float rotateDegree) {
         float scaleWidth = 1, scaleHeight = 1;
-        WindowManager windowManager = (WindowManager) this.getSystemService(WINDOW_SERVICE);
-        Point winSize = new Point();
-        windowManager.getDefaultDisplay().getSize(winSize);
         float scale = (winSize.x / numberForFullScreen / bitmap.getWidth() * 1.0f);
         scaleWidth = scaleWidth * scale;
         scaleHeight = scaleHeight * scale;
@@ -725,9 +794,6 @@ public class RoomActivity extends Activity {
 
     private Bitmap getScaleBitmapY(Bitmap bitmap, float numberForFullScreen, float rotateDegree) {
         float scaleWidth = 1, scaleHeight = 1;
-        WindowManager windowManager = (WindowManager) this.getSystemService(WINDOW_SERVICE);
-        Point winSize = new Point();
-        windowManager.getDefaultDisplay().getSize(winSize);
         float scale = (winSize.y / numberForFullScreen / bitmap.getHeight() * 1.0f);
         scaleWidth = scaleWidth * scale;
         scaleHeight = scaleHeight * scale;
@@ -736,6 +802,100 @@ public class RoomActivity extends Activity {
         matrix.postScale(scaleWidth, scaleHeight);
         return Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
     }
+
+    private void displayRoundWinDialog() {
+        LayoutInflater inflater = getLayoutInflater();
+        View round_win_dialog = inflater.inflate(R.layout.round_win_dialog, (ViewGroup) findViewById(R.id.round_win_dialog));
+
+        setRoundWinDetail(inflater, (LinearLayout) round_win_dialog.findViewById(R.id.me), MJClient.getInstance().getRoom().getUsers().get(0));
+        setRoundWinDetail(inflater, (LinearLayout) round_win_dialog.findViewById(R.id.player2), MJClient.getInstance().getRoom().getUsers().get(1));
+        setRoundWinDetail(inflater, (LinearLayout) round_win_dialog.findViewById(R.id.player3), MJClient.getInstance().getRoom().getUsers().get(2));
+        setRoundWinDetail(inflater, (LinearLayout) round_win_dialog.findViewById(R.id.player4), MJClient.getInstance().getRoom().getUsers().get(3));
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(RoomActivity.this);
+        builder.setView(round_win_dialog);
+        builder.setTitle("Score for this round:");
+        builder.setPositiveButton("Next round.", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+                MJClient.getInstance().send(Action.GAME_NEW_ROUND_START);
+
+            }
+        });
+        AlertDialog dialog = builder.create();
+        dialog.show();
+        dialog.getWindow().setLayout(getWindowManager().getDefaultDisplay().getWidth() * 95 / 100, getWindowManager().getDefaultDisplay().getHeight() * 95 / 100);
+    }
+
+    private void setRoundWinDetail(LayoutInflater inflater, LinearLayout viewById, User user) {
+        View label_value = inflater.inflate(R.layout.round_win_label_value, (ViewGroup) findViewById(R.id.round_win_label_value));
+        ImageView winUser = (ImageView) label_value.findViewById(R.id.winUser);
+        Bitmap bitmap;
+        try {
+            bitmap = BitmapFactory.decodeStream(this.getAssets().open(
+                    user.getId() + ".png"));
+            winUser.setImageBitmap(bitmap);
+        } catch (IOException e) {
+            winUser.setBackgroundResource(R.drawable.default_header);
+        }
+        TextView winDetail = (TextView) label_value.findViewById(R.id.winDetail);
+        winDetail.setText(user.getScoreDetail());
+
+        TextView winScore = (TextView) label_value.findViewById(R.id.winScore);
+        winScore.setText(user.getScore());
+
+        if (user.isWin()) {
+            ImageView winIcon = (ImageView) label_value.findViewById(R.id.winIcon);
+            winIcon.setImageResource(R.drawable.win_icon);
+        }
+    }
+
+    private void displayFinalWinDialog() {
+        LayoutInflater inflater = getLayoutInflater();
+        View final_win_dialog = inflater.inflate(R.layout.final_win_dialog, (ViewGroup) findViewById(R.id.final_win_dialog));
+
+        setFinalWinDetail(inflater, (LinearLayout) final_win_dialog.findViewById(R.id.me), MJClient.getInstance().getRoom().getUsers().get(0));
+        setFinalWinDetail(inflater, (LinearLayout) final_win_dialog.findViewById(R.id.player2), MJClient.getInstance().getRoom().getUsers().get(1));
+        setFinalWinDetail(inflater, (LinearLayout) final_win_dialog.findViewById(R.id.player3), MJClient.getInstance().getRoom().getUsers().get(2));
+        setFinalWinDetail(inflater, (LinearLayout) final_win_dialog.findViewById(R.id.player4), MJClient.getInstance().getRoom().getUsers().get(3));
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(RoomActivity.this);
+        builder.setView(final_win_dialog);
+        builder.setTitle("Final Score:");
+        builder.setPositiveButton("Share", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        AlertDialog dialog = builder.create();
+        dialog.show();
+        dialog.getWindow().setLayout(getWindowManager().getDefaultDisplay().getWidth() * 95 / 100, getWindowManager().getDefaultDisplay().getHeight() * 95 / 100);
+    }
+
+    private void setFinalWinDetail(LayoutInflater inflater, LinearLayout layout, User user) {
+        layout.removeAllViews();
+
+        View label_value = inflater.inflate(R.layout.final_win_label_value, (ViewGroup) findViewById(R.id.final_win_label_value));
+        TextView zmValue = (TextView) label_value.findViewById(R.id.zmValue);
+        zmValue.setText("" + user.getZmValue());
+
+        TextView jpValue = (TextView) label_value.findViewById(R.id.jpValue);
+        jpValue.setText("" + user.getJpValue());
+
+        TextView dpValue = (TextView) label_value.findViewById(R.id.dpValue);
+        dpValue.setText("" + user.getDpValue());
+
+        TextView agValue = (TextView) label_value.findViewById(R.id.agValue);
+        agValue.setText("" + user.getAgValue());
+
+        TextView mgValue = (TextView) label_value.findViewById(R.id.mgValue);
+        mgValue.setText("" + user.getMgValue());
+
+        layout.addView(label_value);
+    }
+
 
     private class CartOnClickListener implements View.OnClickListener {
         public void onClick(View cartImage) {
@@ -770,10 +930,12 @@ public class RoomActivity extends Activity {
             MeetType meetType = (MeetType) v.getTag();
             switch (meetType) {
                 case WIN:
+                    MJClient.getInstance().send(Action.GAME_WIN);
                     break;
                 default:
                     MJClient.getInstance().getUser().setMeetType(meetType);
                     MJClient.getInstance().send(Action.GAME_MEET);
+                    MJClient.getInstance().getRoom().setCurrentGetCart(null);
                     break;
             }
         }
@@ -785,11 +947,24 @@ public class RoomActivity extends Activity {
         public void onReceive(Context content, Intent intent) {
             try {
                 Log.i("RoomActivity", "Broad receive message...");
-                displayRoom();
+                switch (intent.getFlags()) {
+                    case UIStatus.WIN_DIALOG:
+                        if (MJClient.getInstance().getRoom().getCurrentRound() >= 8) {
+                            displayFinalWinDialog();
+                        }
+                        reOrderUsers();
+                        displayRoundWinDialog();
+                        break;
+                    default:
+                        displayRoom();
+                        break;
+                }
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
 
     }
+
 }
